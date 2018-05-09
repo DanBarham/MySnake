@@ -78,12 +78,12 @@ void Game::UpdateModel()
 			delta_loc = { 1,0 };
 		}
 
-		/*snakeMoveCounter and snakeMovePeriod work so that the snake doesn't move every frame
-		the snake ends up moving every 60/snakeMovePeriod frames*/
-		++snakeMoveCounter;
+		/*snakeMoveCounter adds up the accumulated time and updates the game logic after
+		it has reached the snakeMovePeriod, it gets reset and process begins again*/
+		snakeMoveCounter += frameTime;
 		if (snakeMoveCounter >= snakeMovePeriod)
 		{
-			snakeMoveCounter = 0;
+			snakeMoveCounter = 0.0f;
 
 			//The for loop + first if statement test for game over conditions
 			const Location next = snake.GetNextHeadLocation(delta_loc);
@@ -119,10 +119,10 @@ void Game::UpdateModel()
 					++score;
 					if (score % 2 == 0)	//speed up the game every 2 goals
 					{
-						--snakeMovePeriod;
-						if (snakeMovePeriod < 5)	//Max speed, remember lower = faster
+						snakeMovePeriod -= 1.0f/60.0f;
+						if (snakeMovePeriod < maxSpeed)
 						{
-							snakeMovePeriod = 5;
+							snakeMovePeriod = maxSpeed;
 						}
 					}
 				}

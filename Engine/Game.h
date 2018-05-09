@@ -57,9 +57,10 @@ private:
 	Goal goal;
 	Obstacle obstacles[Obstacle::maxObstacle];
 	int obstacleCount = 0;
-	int snakeMovePeriod = 12;  //Lower == faster
 	int score = 0;
-	int snakeMoveCounter = 0;
+	float snakeMoveCounter = 0.0f;
+	float snakeMovePeriod = 12.0f/60.0f;  //I use as a fraction of 60 assuming a framerate of 60 hz
+	float maxSpeed = 5.0f / 60.0f;  
 	bool gameStart = false;
 	bool gameOver = false;
 	/********************************/
