@@ -27,6 +27,7 @@
 #include "Snake.h"
 #include "Goal.h"
 #include "Obstacle.h"
+#include "FrameTimer.h"
 #include <random>
 
 class Game
@@ -47,6 +48,7 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	FrameTimer ft;
 	std::mt19937 rng;
 	Board brd;
 	Snake snake;

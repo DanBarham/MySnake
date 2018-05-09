@@ -46,6 +46,8 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float frameTime = ft.Mark();
+
 	if (!gameStart)
 	{
 		//Starting splash screen VK_RETURN = Enter
