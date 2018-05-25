@@ -48,16 +48,8 @@ void Game::UpdateModel()
 {
 	const float frameTime = ft.Mark();
 
-	if (!gameStart)
-	{
-		//Starting splash screen VK_RETURN = Enter
-		//After gameStart = true, then we start updating the game
-		if (wnd.kbd.KeyIsPressed(VK_RETURN))
-		{
-			gameStart = true;
-		}
-	}
-	else if (!gameOver)	//While end game conditions = false
+
+	if ( gState == GameState::PLAYING )
 	{
 		/*Keyboard controls (up,down,left,right)
 		The second condition in the if statements is to prevent the snake from immediately turning back on itself*/
@@ -91,13 +83,13 @@ void Game::UpdateModel()
 			{
 				if (obstacles[i].GetLocation() == next)
 				{
-					gameOver = true;
+					gState = GameState::GAMEOVER;
 					return;
 				}
 			}
-			if (!brd.IsInsideBoard(next) || snake.IsInTile(next, false) || gameOver)  //if you collide w/ the edge or w/ yourself
+			if (!brd.IsInsideBoard(next) || snake.IsInTile(next, false) || gState == GameState::GAMEOVER)  //if you collide w/ the edge or w/ yourself
 			{
-				gameOver = true;
+				gState = GameState::GAMEOVER;
 			}
 			else {	//if the game isn't over update the game
 				const bool eating = (next == goal.GetLocation());	//tests if you are colliding w/ the goal
@@ -129,11 +121,20 @@ void Game::UpdateModel()
 			}
 		}
 	}
+	else if ( gState == GameState::GAMESTART )
+	{
+		//Starting splash screen VK_RETURN = Enter
+		//After gameStart = true, then we start updating the game
+		if (wnd.kbd.KeyIsPressed(VK_RETURN))
+		{
+			gState = GameState::PLAYING;
+		}
+	}
 }
 
 void Game::ComposeFrame()
 {
-	if (!gameStart)
+	if (gState == GameState::GAMESTART)
 	{
 		SpriteCodex::DrawTitle(Graphics::ScreenWidth / 2 - 106, Graphics::ScreenHeight / 2 - 80, gfx);
 	}
@@ -146,7 +147,7 @@ void Game::ComposeFrame()
 			obstacles[i].Draw(brd);
 		}
 		goal.Draw(brd);
-		if (gameOver)
+		if (gState == GameState::GAMEOVER)
 		{
 			SpriteCodex::DrawGameOver(Graphics::ScreenWidth / 2 - 41, Graphics::ScreenHeight / 2 - 31, gfx);
 		}

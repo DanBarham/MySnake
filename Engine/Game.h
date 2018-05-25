@@ -44,6 +44,13 @@ private:
 	/*  User Functions              */
 	/********************************/
 private:
+	enum class GameState
+	{
+		GAMESTART,
+		PLAYING,
+		GAMEOVER
+	};
+private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
@@ -56,12 +63,11 @@ private:
 	Location prev_delta_loc = delta_loc;
 	Goal goal;
 	Obstacle obstacles[Obstacle::maxObstacle];
+	GameState gState = GameState::GAMESTART;
 	int obstacleCount = 0;
 	int score = 0;
 	float snakeMoveCounter = 0.0f;
 	float snakeMovePeriod = 12.0f/60.0f;  //I use as a fraction of 60 assuming a framerate of 60 hz
-	float maxSpeed = 5.0f / 60.0f;  
-	bool gameStart = false;
-	bool gameOver = false;
+	float maxSpeed = 5.0f / 60.0f;
 	/********************************/
 };
