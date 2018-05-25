@@ -16,6 +16,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{8b6c92a8-f65d-451e-80e3-d65773602b92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sounds">
+      <UniqueIdentifier>{16dbbac1-ef49-4fa6-a11d-b241a96c7809}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -69,6 +72,12 @@
     <ClInclude Include="FrameTimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -110,6 +119,9 @@
     <ClCompile Include="FrameTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">
@@ -128,5 +140,28 @@
     <Image Include="Chili.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Slither1.wav">
+      <Filter>Sounds</Filter>
+    </Media>
+    <Media Include="Slither2.wav">
+      <Filter>Sounds</Filter>
+    </Media>
+    <Media Include="Title.wav">
+      <Filter>Sounds</Filter>
+    </Media>
+    <Media Include="Eat.wav">
+      <Filter>Sounds</Filter>
+    </Media>
+    <Media Include="Fart.wav">
+      <Filter>Sounds</Filter>
+    </Media>
+    <Media Include="Music_Loop.wav">
+      <Filter>Sounds</Filter>
+    </Media>
+    <Media Include="Slither0.wav">
+      <Filter>Sounds</Filter>
+    </Media>
   </ItemGroup>
 </Project>

@@ -28,6 +28,8 @@
 #include "Goal.h"
 #include "Obstacle.h"
 #include "FrameTimer.h"
+#include "Sound.h"
+#include "SoundEffect.h"
 #include <random>
 
 class Game
@@ -64,6 +66,11 @@ private:
 	Goal goal;
 	Obstacle obstacles[Obstacle::maxObstacle];
 	GameState gState = GameState::GAMESTART;
+	Sound eat;
+	Sound gameMusic;
+	Sound gameOverSound;
+	Sound titleSound;
+	SoundEffect slitherSound;
 	int obstacleCount = 0;
 	int score = 0;
 	float snakeMoveCounter = 0.0f;

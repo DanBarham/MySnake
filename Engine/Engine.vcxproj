@@ -152,6 +152,8 @@
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Snake.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="SpriteCodex.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +169,7 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpriteCodex.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +239,15 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Chili.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Eat.wav" />
+    <Media Include="Fart.wav" />
+    <Media Include="Music_Loop.wav" />
+    <Media Include="Slither0.wav" />
+    <Media Include="Slither1.wav" />
+    <Media Include="Slither2.wav" />
+    <Media Include="Title.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

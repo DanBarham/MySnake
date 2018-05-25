@@ -31,9 +31,16 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	brd( gfx ),
 	rng( std::random_device()() ),
-	snake( {4,4}, rng ),	//Snake starting position (x,y)
-	goal(rng, brd, snake)
+	snake( {4,4},rng ),	//Snake starting position (x,y)
+	goal( rng,brd,snake ),
+	eat( L"Eat.wav" ),
+	gameMusic( L"Music_Loop.wav",.0f,3.42f ),
+	gameOverSound( L"Fart.wav" ),
+	titleSound( L"Title.wav" ),
+	slitherSound( { L"Slither0.wav",L"Slither1.wav",L"Slither2.wav" } )
 {
+	titleSound.Play();
+	gameMusic.Play();
 }
 
 void Game::Go()
@@ -84,19 +91,25 @@ void Game::UpdateModel()
 				if (obstacles[i].GetLocation() == next)
 				{
 					gState = GameState::GAMEOVER;
+					gameOverSound.Play();
+					gameMusic.StopAll();
 					return;
 				}
 			}
 			if (!brd.IsInsideBoard(next) || snake.IsInTile(next, false) || gState == GameState::GAMEOVER)  //if you collide w/ the edge or w/ yourself
 			{
 				gState = GameState::GAMEOVER;
+				gameMusic.StopAll();
+				gameOverSound.Play();
 			}
 			else {	//if the game isn't over update the game
 				const bool eating = (next == goal.GetLocation());	//tests if you are colliding w/ the goal
 				if (eating)
 				{
 					snake.Grow();
+					eat.Play();
 				}
+				slitherSound.Play( rng );
 				snake.MoveBy(delta_loc);
 				prev_delta_loc = delta_loc;
 				if (eating)
